@@ -1,0 +1,45 @@
+
+
+class GDObject {
+
+    pos: {
+        x: number,
+        y: number,
+    }
+    scale: {
+        x: number,
+        y: number,
+    } = {x: 1, y: 1}
+    rotation: number = 0;
+
+    disables: number = 0;
+
+    constructor(x: number, y: number) {
+        this.pos = {x, y}
+    }
+
+    toggleOff() {
+        this.disables += 1
+    }
+    toggleOn() {
+        this.disables -= 1
+    }
+
+    drawFull(p5: any) {
+        p5.push()
+        p5.translate(this.pos.x, -this.pos.y)
+        p5.rotate(- this.rotation * Math.PI / 180)
+        p5.scale(this.scale.x, this.scale.y)
+
+        this.draw(p5)
+
+        p5.pop()
+    }
+
+    draw(p5: any) {}
+
+}
+
+export default GDObject
+
+
